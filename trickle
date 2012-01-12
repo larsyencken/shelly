@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#  trickle.py
+#  anytop
+#
+#  Created by Lars Yencken on 2012-01-11.
+#  Copyright 2012 Lars Yencken. All rights reserved.
+#
+
+"""
+Trickle data in, line by line, at the given rate.
+"""
+
+import os
+import sys
+import optparse
+import random
+import time
+import math
+
+def trickle_all(rate, istream=sys.stdin, ostream=sys.stdout,
+        flush_lines=False):
+    write = ostream.write
+    flush = ostream.flush
+    try:
+        for line in istream:
+            wait_exponentially(rate)
+            write(line)
+            if flush_lines:
+                flush()
+    except KeyboardInterrupt:
+        # why make a fuss?
+        pass
+
+def wait_exponentially(rate):
+    cdf = random.random()
+    wait = rate * -math.log(1 - cdf)
+    time.sleep(wait)
+
+#----------------------------------------------------------------------------#
+
+def _create_option_parser():
+    usage = \
+"""%prog [options] <rate>
+
+Delay incoming data according to the given rate."""
+
+    parser = optparse.OptionParser(usage)
+    parser.add_option('--flush', action='store_true', dest='flush_lines',
+            help='Flush after every line.')
+
+    return parser
+
+def main(argv):
+    parser = _create_option_parser()
+    (options, args) = parser.parse_args(argv)
+
+    if len(args) != 1:
+        parser.print_help()
+        sys.exit(1)
+
+    rate = float(args[0])
+    trickle_all(rate, flush_lines=options.flush_lines)
+
+#----------------------------------------------------------------------------#
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
