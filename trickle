@@ -12,23 +12,33 @@
 Trickle data in, line by line, at the given rate.
 """
 
-import os
 import sys
 import optparse
 import random
 import time
 import math
 
-def trickle_all(rate, istream=sys.stdin, ostream=sys.stdout,
-        flush_lines=False):
+def trickle(rate, istream=sys.stdin, ostream=sys.stdout):
     write = ostream.write
-    flush = ostream.flush
     try:
         for line in istream:
             wait_exponentially(rate)
             write(line)
-            if flush_lines:
-                flush()
+    except KeyboardInterrupt:
+        # why make a fuss?
+        pass
+
+def trickle_unbuffered(rate, istream=sys.stdin, ostream=sys.stdout):
+    "Read using unbuffered methods and flush after every line."
+    write = ostream.write
+    flush = ostream.flush
+    try:
+        l = istream.readline()
+        while l:
+            wait_exponentially(rate)
+            write(l)
+            flush()
+            l = istream.readline()
     except KeyboardInterrupt:
         # why make a fuss?
         pass
@@ -47,8 +57,8 @@ def _create_option_parser():
 Delay incoming data according to the given rate."""
 
     parser = optparse.OptionParser(usage)
-    parser.add_option('--flush', action='store_true', dest='flush_lines',
-            help='Flush after every line.')
+    parser.add_option('-u', action='store_true', dest='unbuffered',
+            help='Run with reduced buffering.')
 
     return parser
 
@@ -61,7 +71,10 @@ def main(argv):
         sys.exit(1)
 
     rate = float(args[0])
-    trickle_all(rate, flush_lines=options.flush_lines)
+    if options.unbuffered:
+        trickle_unbuffered(rate)
+    else:
+        trickle(rate)
 
 #----------------------------------------------------------------------------#
 
