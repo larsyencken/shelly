@@ -15,15 +15,15 @@ input until a match occurs.
 random
 ------
 
-Generate random variables.
+Generate an infinite stream of random variables.
 
 trickle
 -------
 
 Speed-control over a shell pipe.
 
-symbolic
---------
+Cool ideas
+==========
 
-[TBD] Perform symbolic transformations over numbers coming in.
-
+- symbolic: perform symbolic math on the input
+- reduce: reduce the input with a given operator
