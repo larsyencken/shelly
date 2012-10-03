@@ -4,23 +4,19 @@
 #  groupby
 #  shelly
 #
-#  Created by Lars Yencken on 2012-01-12.
-#  Copyright 2012 Lars Yencken. All rights reserved.
-#
 
 """
 Group the input by the given key. Useful before a reduce step in
 a map-sort-reduce pipeline.
 """
 
-import os
 import sys
 import optparse
 import itertools
 
+
 def group_lines(field, delimiter=' ', istream=sys.stdin, ostream=sys.stdout,
         unbuffered=False, pop_key=False):
-    write = ostream.write
     flush = ostream.flush
     istream = clean_lines(istream)
     popper = key_popper(field, delimiter)
@@ -33,16 +29,19 @@ def group_lines(field, delimiter=' ', istream=sys.stdin, ostream=sys.stdout,
         if unbuffered:
             flush()
 
+
 def clean_lines(istream):
     for l in istream:
         yield ' '.join(l.split())
+
 
 def key_fetcher(field, delimiter):
     "Make a function to extract a key from each line."
     def get_key(l):
         return l.lstrip().split(delimiter)[field]
-    
+
     return get_key
+
 
 def key_popper(field, delimiter):
     def popper(l):
@@ -52,7 +51,6 @@ def key_popper(field, delimiter):
 
     return popper
 
-#----------------------------------------------------------------------------#
 
 def _create_option_parser():
     usage = \
@@ -72,6 +70,7 @@ Group the input lines by the given field."""
 
     return parser
 
+
 def main(argv):
     parser = _create_option_parser()
     (options, args) = parser.parse_args(argv)
@@ -90,8 +89,6 @@ def main(argv):
         # often happens with broken pipes
         pass
 
-#----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
     main(sys.argv[1:])
-

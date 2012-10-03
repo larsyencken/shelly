@@ -13,6 +13,7 @@ import sys
 import optparse
 import random
 
+
 def subsample(p, istream=sys.stdin, ostream=sys.stdout):
     r = random.random
     write = ostream.write
@@ -20,7 +21,6 @@ def subsample(p, istream=sys.stdin, ostream=sys.stdout):
         if r() < p:
             write(l)
 
-#----------------------------------------------------------------------------#
 
 def _create_option_parser():
     usage = \
@@ -32,6 +32,7 @@ For example, using 0.4 will keep roughly 40% of input lines."""
     parser = optparse.OptionParser(usage)
 
     return parser
+
 
 def main(argv):
     parser = _create_option_parser()
@@ -48,7 +49,6 @@ def main(argv):
         sys.exit(1)
     subsample(p)
 
-#----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
     main(sys.argv[1:])

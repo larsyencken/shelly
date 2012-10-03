@@ -4,9 +4,6 @@
 #  drop.py
 #  shelly
 #
-#  Created by Lars Yencken on 2012-03-05.
-#  Copyright 2012 Lars Yencken. All rights reserved.
-#
 
 """
 Drop a prefix of lines from stdin which match a pattern.
@@ -15,6 +12,7 @@ Drop a prefix of lines from stdin which match a pattern.
 import sys
 import optparse
 import re
+
 
 def drop(regex, istream=sys.stdin, ostream=sys.stdout, until=False):
     search = re.compile(regex).search
@@ -33,7 +31,6 @@ def drop(regex, istream=sys.stdin, ostream=sys.stdout, until=False):
     for line in istream:
         write(line)
 
-#----------------------------------------------------------------------------#
 
 def _create_option_parser():
     usage = \
@@ -49,6 +46,7 @@ Drop a prefix of lines from stdin until some cutoff criteria is met."""
 
     return parser
 
+
 def main(argv):
     parser = _create_option_parser()
     (options, args) = parser.parse_args(argv)
@@ -60,7 +58,6 @@ def main(argv):
     regex = options.until_regex or options.while_regex
     drop(regex, until=bool(options.until_regex))
 
-#----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
     try:
@@ -69,4 +66,3 @@ if __name__ == '__main__':
         pass
     except IOError:
         pass
-

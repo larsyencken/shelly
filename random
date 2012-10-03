@@ -5,9 +5,6 @@
 #  random.py
 #  shelly
 #
-#  Created by Lars Yencken on 2012-01-27.
-#  Copyright 2012 Lars Yencken. All rights reserved.
-#
 
 """
 Random number generation.
@@ -17,13 +14,16 @@ import sys
 import optparse
 import random
 
+
 def random_uniform(min_=0, max_=1):
     while True:
-        yield min_ + (max_ - min_)*random.random()
+        yield min_ + (max_ - min_) * random.random()
+
 
 def random_gaussian(mu=0, sigma=1):
     while True:
         yield random.gauss(mu, sigma)
+
 
 def stream(it):
     try:
@@ -34,7 +34,6 @@ def stream(it):
     except IOError:
         pass
 
-#----------------------------------------------------------------------------#
 
 def _create_option_parser():
     usage = \
@@ -48,6 +47,7 @@ Generate a stream of random numbers."""
 
     return parser
 
+
 def main(argv):
     parser = _create_option_parser()
     (options, args) = parser.parse_args(argv)
@@ -60,14 +60,13 @@ def main(argv):
         try:
             mu, sigma = map(float, options.gauss_params.split(','))
         except ValueError:
-            print >> sys.stderr, 'Please specify in the form --gaussian=mu,sigma'
+            print >> sys.stderr, \
+                    'Please specify in the form --gaussian=mu,sigma'
             sys.exit(1)
         stream(random_gaussian(mu, sigma))
     else:
         stream(random_uniform())
 
-#----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
     main(sys.argv[1:])
-
