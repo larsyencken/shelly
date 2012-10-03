@@ -18,13 +18,15 @@ import optparse
 from consoleLog.slot import Slot
 
 def running_max(istream=sys.stdin):
+    print '%18s' % 'max'
     s = Slot()
     m = float('-inf')
     try:
         for line in sys.stdin:
             v = float(line)
-            m = max(v, m)
-            s.update(str(m))
+            if v > m:
+                m = v
+                s.update('%18s' % str(m))
     except KeyboardInterrupt:
         pass
     except IOError:
