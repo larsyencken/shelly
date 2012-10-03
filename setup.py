@@ -35,5 +35,7 @@ access to useful functional programming primitives and interactive tools.
             'random',
             'max',
             'trickle',
+            'min',
+            'range',
         ],
     )
