@@ -26,12 +26,14 @@ access to useful functional programming primitives and interactive tools.
         license="BSD",
         scripts=[
             'drop',
-            'take',
+            'exists',
             'groupby',
-            'random',
             'max',
-            'trickle',
             'min',
+            'random',
             'range',
+            'subsample',
+            'take',
+            'trickle',
         ],
     )
