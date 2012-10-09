@@ -16,6 +16,14 @@ Filter a stream of filenames to only those which exist (or the reverse).
 
 Generate an infinite stream of random numbers.
 
+### range
+
+Display the running range of a stream of numbers.
+
+### subsample
+
+Randomly drop a given proportion of lines from the input stream.
+
 ### take
 
 Like UNIX ``head``, but takes a regex predicate to match against. If ``--while`` is used, it pipes input until a mismatch occurs. If ``--until`` occurs, it pipes input until a match occurs.
@@ -23,10 +31,6 @@ Like UNIX ``head``, but takes a regex predicate to match against. If ``--while``
 ### trickle
 
 Artificially cap the rate at which data moves through a shell pipe.
-
-### range
-
-Display the running range of a stream of numbers.
 
 ## Future ideas
 
