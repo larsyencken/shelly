@@ -22,7 +22,7 @@ def running_timestamps(istream=sys.stdin, strict=False):
     s = Slot()
     _min = sys.maxint
     _max = 0
-    fromtimestamp = datetime.datetime.fromtimestamp
+    fromtimestamp = datetime.datetime.utcfromtimestamp
     try:
         for line in sys.stdin:
             try:
