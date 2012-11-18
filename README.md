@@ -2,6 +2,10 @@
 
 Shelly's your friend. She helps bring interactivity and understanding to streaming data in the shell.
 
+## Current status
+
+The tools are useful, but are still being iterated on. They're likely to change in future.
+
 ## Commands
 
 ### drop
