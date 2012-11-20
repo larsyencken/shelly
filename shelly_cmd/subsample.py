@@ -24,7 +24,7 @@ def subsample(p, istream=sys.stdin, ostream=sys.stdout):
 
 def _create_option_parser():
     usage = \
-"""%prog [options] p
+"""%prog subsample [options] p
 
 Prints to stdout a subsample of lines from stdin, of proportion given by p.
 For example, using 0.4 will keep roughly 40% of input lines."""

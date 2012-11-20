@@ -54,7 +54,7 @@ def key_popper(field, delimiter):
 
 def _create_option_parser():
     usage = \
-"""%prog [options]
+"""%prog groupby [options]
 
 Group the input lines by the given field."""
 

@@ -1,0 +1,31 @@
+__all__ = [
+    'drop',
+    'exists',
+    'groupby',
+    'highlight',
+    'max',
+    'min',
+    'random',
+    'range',
+    'repeat',
+    'space',
+    'subsample',
+    'take',
+    'trickle',
+]
+
+commands = {
+    'drop': 'drop',
+    'exists': 'exists',
+    'groupby': 'groupby',
+    'highlight': 'highlight',
+    'max': 'max',
+    'min': 'min',
+    'random': 'shrandom',
+    'range': 'range',
+    'repeat': 'repeat',
+    'space': 'space',
+    'subsample': 'subsample',
+    'take': 'take',
+    'trickle': 'trickle',
+}

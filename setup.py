@@ -10,7 +10,7 @@ Package information for shelly package.
 
 from setuptools import setup
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 
 setup(
         name='shelly',
@@ -25,15 +25,9 @@ access to useful functional programming primitives and interactive tools.
         author_email="lars@yencken.org",
         license="BSD",
         scripts=[
-            'drop',
-            'exists',
-            'groupby',
-            'max',
-            'min',
-            'random',
-            'range',
-            'subsample',
-            'take',
-            'trickle',
+            'shelly',
+        ],
+        packages=[
+            'shelly_cmd',
         ],
     )

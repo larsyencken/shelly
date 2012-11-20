@@ -20,7 +20,7 @@ def exists(invert=False):
 
 def _create_option_parser():
     usage = \
-"""%prog [options]
+"""%prog exists [options]
 
 Filter out files from stdin which don't exist."""
 

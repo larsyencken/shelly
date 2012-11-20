@@ -51,7 +51,7 @@ def wait_exponentially(rate):
 
 def _create_option_parser():
     usage = \
-"""%prog [options] <rate>
+"""%prog trickle [options] <rate>
 
 Delay incoming data according to the given rate."""
 

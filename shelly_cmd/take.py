@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  drop.py
+#  take.py
 #  shelly
 #
 
 """
-Drop a prefix of lines from stdin which match a pattern.
+Take lines from the input until they match a given regex.
 """
 
 import sys
@@ -14,35 +14,32 @@ import optparse
 import re
 
 
-def drop(regex, istream=sys.stdin, ostream=sys.stdout, until=False):
+def take(regex, until=True):
     search = re.compile(regex).search
-    write = ostream.write
+    write = sys.stdout.write
     if until:
-        for line in istream:
+        for line in sys.stdin:
             if search(line):
-                write(line)
                 break
+            write(line)
     else:
-        for line in istream:
+        for line in sys.stdin:
             if not search(line):
-                write(line)
                 break
-
-    for line in istream:
-        write(line)
+            write(line)
 
 
 def _create_option_parser():
     usage = \
-"""%prog [options]
+"""%prog take [options]
 
-Drop a prefix of lines from stdin until some cutoff criteria is met."""
+Cat a prefix of lines from stdin until some cutoff criteria is met."""
 
     parser = optparse.OptionParser(usage)
     parser.add_option('--until', action='store', dest='until_regex',
-            help='Drop until the first line which matches this regex.')
+            help='Stop at the first line which matches this regex.')
     parser.add_option('--while', action='store', dest='while_regex',
-            help='Drop until we find a line which doesn\'t match.')
+            help='Stop at the first line which doesn\'t match this regex.')
 
     return parser
 
@@ -56,7 +53,8 @@ def main(argv):
         sys.exit(1)
 
     regex = options.until_regex or options.while_regex
-    drop(regex, until=bool(options.until_regex))
+
+    take(regex, until=bool(options.until_regex))
 
 
 if __name__ == '__main__':

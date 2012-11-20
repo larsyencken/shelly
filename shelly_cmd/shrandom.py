@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  random.py
+#  shrandom.py
 #  shelly
 #
 
@@ -16,8 +16,9 @@ import random
 
 
 def random_uniform(min_=0, max_=1):
+    r = random.random
     while True:
-        yield min_ + (max_ - min_) * random.random()
+        yield min_ + (max_ - min_) * r()
 
 
 def random_gaussian(mu=0, sigma=1):
@@ -37,7 +38,7 @@ def stream(it):
 
 def _create_option_parser():
     usage = \
-"""%prog [options]
+"""%prog random [options]
 
 Generate a stream of random numbers."""
 

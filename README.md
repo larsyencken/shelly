@@ -13,7 +13,7 @@ The tools are useful, but are still being iterated on. They're likely to change 
 Like UNIX ``tail``, but takes a regex predicate to match against. Silently drops lines from the input until the desired condition is reached.
 
 ```
-$ seq 100 | drop --until 94
+$ seq 100 | shelly drop --until 94
 94
 95
 96
@@ -32,7 +32,7 @@ Filter a stream of filenames to only those which exist (or the reverse).
 Generate an infinite stream of random numbers.
 
 ```
-$ random | head -n 5
+$ shelly random | head -n 5
 0.19728902696
 0.0793430590319
 0.167234982902
@@ -45,7 +45,7 @@ $ random | head -n 5
 Display the running range of a stream of numbers.
 
 ```
-$ random | head -n 5 | range
+$ shelly random | head -n 5 | shelly range
                min                max              delta
     0.515829248552     0.952509451768     0.436680203216
 ```
@@ -55,7 +55,7 @@ $ random | head -n 5 | range
 Randomly drop a given proportion of lines from the input stream.
 
 ```
-$ seq 100 | subsample 0.05
+$ seq 100 | shelly subsample 0.05
 9
 37
 73
@@ -68,7 +68,7 @@ $ seq 100 | subsample 0.05
 Like UNIX ``head``, but takes a regex predicate to match against. If ``--while`` is used, it pipes input until a mismatch occurs. If ``--until`` occurs, it pipes input until a match occurs.
 
 ```
-$ seq 100 | take --until 8
+$ seq 100 | shelly take --until 8
 1
 2
 3

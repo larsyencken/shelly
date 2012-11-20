@@ -15,14 +15,14 @@ import optparse
 from consoleLog.slot import Slot
 
 
-def running_min(istream=sys.stdin):
+def running_max(istream=sys.stdin):
+    print '%18s' % 'max'
     s = Slot()
-    m = float('+inf')
-    print '%18s' % 'min'
+    m = float('-inf')
     try:
         for line in sys.stdin:
             v = float(line)
-            if v < m:
+            if v > m:
                 m = v
                 s.update('%18s' % str(m))
     except KeyboardInterrupt:
@@ -36,9 +36,9 @@ def running_min(istream=sys.stdin):
 
 def _create_option_parser():
     usage = \
-"""%prog [options]
+"""%prog max [options]
 
-Displays a running minimum of values from stdin."""
+Displays a running maximum of values from stdin."""
 
     parser = optparse.OptionParser(usage)
 
@@ -53,7 +53,7 @@ def main(argv):
         parser.print_help()
         sys.exit(1)
 
-    running_min(*args)
+    running_max(*args)
 
 
 if __name__ == '__main__':

@@ -106,7 +106,7 @@ def humanise(s):
 
 def _create_option_parser():
     usage = \
-"""%prog [options]
+"""%prog range [options]
 
 Displays a running maximum of values from stdin."""
 
