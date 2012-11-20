@@ -88,7 +88,7 @@ $ seq 100 | shelly take --until 8
 
 ### trickle
 
-Artificially cap the rate at which data moves through a shell pipe.
+Artificially cap the rate at which data moves through a shell pipe, with random delays. Use it like `tail -f logfile | shelly trickle 0.1` to see about `1/0.1 = 10` lines per second. Trickle operates on a line-by-line basis, with random delays between lines (for asthetics). For a super-reliable fixed byte rate, use instead the `pv` command instead, e.g. `pv -L 100k`.
 
 ## Future ideas
 
