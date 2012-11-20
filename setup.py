@@ -30,4 +30,7 @@ access to useful functional programming primitives and interactive tools.
         packages=[
             'shelly_cmd',
         ],
+        install_requires=[
+            'clint',  # 0.3.1
+        ],
     )
