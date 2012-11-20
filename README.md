@@ -50,6 +50,14 @@ $ shelly random | head -n 5 | shelly range
     0.515829248552     0.952509451768     0.436680203216
 ```
 
+Range also understands numeric unix timestamps.
+
+```
+$ cat userlogs.timestamps | shelly range -t
+                  min                   max        delta
+  2012-09-17 19:41:43   2012-11-18 14:35:39      61 days
+```
+
 ### subsample
 
 Randomly drop a given proportion of lines from the input stream.
