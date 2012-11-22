@@ -41,9 +41,24 @@ def highlight(pattern, istream=sys.stdin, ostream=sys.stdout, color='red'):
             ostream.write(l[i:])
 
 
+def highlight_fields(field_list, delimiter, color, istream=sys.stdin,
+        ostream=sys.stdout):
+    color = color.upper()
+    for l in istream:
+        parts = l.split(delimiter)
+        for i in field_list:
+            parts[i] = '%s%s%s' % (
+                        getattr(colorama.Fore, color),
+                        parts[i],
+                        colorama.Fore.RESET,
+                    )
+        ostream.write(delimiter.join(parts))
+
+
 def _create_option_parser():
     usage = \
 """%prog highlight [options] pattern
+%prog highlight [options] -f <fieldno>
 
 Operates like a mixture of grep and cat. Passes stdin through to stdout, but
 highlighting the given pattern wherever it's found."""
@@ -53,6 +68,10 @@ highlighting the given pattern wherever it's found."""
     parser.add_option('--red', action='store_true', dest='red',
             default=True)
     parser.add_option('--green', action='store_true', dest='green')
+    parser.add_option('-f', '--fields', action='store', dest='fields',
+            help='A comma-separated list of field numbers to highlight')
+    parser.add_option('-d', '--delimiter', action='store', dest='delimiter',
+            default=',', help='The delimiter between fields.')
 
     return parser
 
@@ -61,12 +80,15 @@ def main(argv):
     parser = _create_option_parser()
     (options, args) = parser.parse_args(argv)
 
-    if len(args) != 1:
+    color = 'blue' if options.blue else 'green' if options.green else 'red'
+    if options.fields and len(args) == 0:
+        fields = map(int, options.fields.split(','))
+        highlight_fields(fields, options.delimiter, color)
+    elif not options.fields and len(args) == 1:
+        highlight(*args, color=color)
+    else:
         parser.print_help()
         sys.exit(1)
-
-    color = 'blue' if options.blue else 'green' if options.green else 'red'
-    highlight(*args, color=color)
 
 
 if __name__ == '__main__':
