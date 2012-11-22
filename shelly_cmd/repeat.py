@@ -15,7 +15,7 @@ import subprocess
 
 
 def repeat(cmd_args, n=None):
-    run = lambda: subprocess.Popen(cmd_args, stdout=sys.stdout,
+    run = lambda: subprocess.Popen([' '.join(cmd_args)], stdout=sys.stdout,
             stderr=sys.stderr, shell=True)
     if n is None:
         while True:
@@ -50,7 +50,10 @@ def main(argv):
         parser.print_help()
         sys.exit(1)
 
-    repeat(args, n=options.n)
+    try:
+        repeat(args, n=options.n)
+    except (KeyboardInterrupt, IOError):
+        pass
 
 
 if __name__ == '__main__':
