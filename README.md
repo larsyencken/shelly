@@ -100,3 +100,15 @@ Artificially cap the rate at which data moves through a shell pipe, with random 
 ### Improvements
 
 - `range`: mirror summaries provided by R, providing running standard devation and quartiles
+
+## Change log
+
+### 0.2.1
+
+- Fix missing `consoleLog` package requirement.
+
+### 0.2.0
+
+- Namespace all commands under the single `shelly` command.
+- Add a `range` script, subsuming `min` and `max`
+- Provide timestamp support for `range`

@@ -1,1 +1,2 @@
 clint==0.3.1
+consoleLog==0.2.4

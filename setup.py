@@ -10,7 +10,7 @@ Package information for shelly package.
 
 from setuptools import setup
 
-VERSION = '0.2.0'
+VERSION = '0.2.1'
 
 setup(
         name='shelly',
@@ -32,5 +32,6 @@ access to useful functional programming primitives and interactive tools.
         ],
         install_requires=[
             'clint',  # 0.3.1
+            'consoleLog==0.2.4',
         ],
     )
