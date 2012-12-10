@@ -106,6 +106,7 @@ Artificially cap the rate at which data moves through a shell pipe, with random 
 ### 0.2.1
 
 - Fix missing `consoleLog` package requirement.
+- Make `shelly repeat` handle command arguments more naturally.
 
 ### 0.2.0
 
