@@ -23,7 +23,7 @@ access to useful functional programming primitives and interactive tools.
         version=VERSION,
         author="Lars Yencken",
         author_email="lars@yencken.org",
-        license="BSD",
+        license="ISC",
         scripts=[
             'shelly',
         ],
