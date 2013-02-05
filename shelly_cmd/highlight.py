@@ -58,7 +58,7 @@ def highlight_fields(field_list, delimiter, color, istream=sys.stdin,
 def _create_option_parser():
     usage = \
 """%prog highlight [options] pattern
-%prog highlight [options] -f <fieldno>
+       %prog highlight [options] -f <fieldno>
 
 Operates like a mixture of grep and cat. Passes stdin through to stdout, but
 highlighting the given pattern wherever it's found."""
