@@ -17,11 +17,17 @@ from clint.textui import colored
 from clint.packages import colorama
 
 
-def highlight(pattern, istream=sys.stdin, ostream=sys.stdout, color='red'):
+def highlight(pattern, istream=sys.stdin, ostream=sys.stdout, color='red',
+        ignore_case=False):
     if color not in colored.COLORS:
         raise ValueError('expected one of red/blue/green, got %s' % color)
     color = color.upper()
-    regex = re.compile(pattern)
+
+    if ignore_case:
+        regex = re.compile(pattern, re.IGNORECASE)
+    else:
+        regex = re.compile(pattern)
+
     for l in istream:
         matches = [m.span() for m in regex.finditer(l)]
         if not matches:
@@ -72,6 +78,8 @@ highlighting the given pattern wherever it's found."""
             help='A comma-separated list of field numbers to highlight')
     parser.add_option('-d', '--delimiter', action='store', dest='delimiter',
             default=',', help='The delimiter between fields.')
+    parser.add_option('-i', '--ignore-case', action='store_true',
+            dest='ignore_case', help='Match in a case-insensitive manner')
 
     return parser
 
@@ -85,7 +93,7 @@ def main(argv):
         fields = map(int, options.fields.split(','))
         highlight_fields(fields, options.delimiter, color)
     elif not options.fields and len(args) == 1:
-        highlight(*args, color=color)
+        highlight(*args, color=color, ignore_case=options.ignore_case)
     else:
         parser.print_help()
         sys.exit(1)

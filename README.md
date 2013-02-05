@@ -103,6 +103,10 @@ Artificially cap the rate at which data moves through a shell pipe, with random 
 
 ## Change log
 
+### Devel
+
+- Case insensitive highlighting with `shelly highlight -i`
+
 ### 0.2.1
 
 - Fix missing `consoleLog` package requirement.
