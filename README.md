@@ -117,3 +117,7 @@ Artificially cap the rate at which data moves through a shell pipe, with random 
 - Namespace all commands under the single `shelly` command.
 - Add a `range` script, subsuming `min` and `max`
 - Provide timestamp support for `range`
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larsyencken/shelly/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
